@@ -1,6 +1,6 @@
 # Настройка инструментов на Linux
 
-## APT
+## Вариант 1. APT
 
 Используйте версию Debian `bullseye` или `sid`, `buster` не подойдет. Ubuntu должна быть не младше 19.10.
 
@@ -23,13 +23,15 @@ qemu-system-riscv64 -machine virt -bios none -kernel kernel/kernel -m 128M -smp 
 # apt install qemu-system-misc=1:4.2-3ubuntu6
 ```
 
-## Arch
+## Вариант 2. Arch
 
 ```
 # pacman -S riscv64-linux-gnu-binutils riscv64-linux-gnu-gcc riscv64-linux-gnu-gdb qemu-arch-extra
 ```
 
-## Собрать из исходников
+## Вариант 3. Собрать из исходников
+
+> ⚠️ Если ни один из вариантов 1 и 2 вам не подходит, используйте этот. Не нужно проделывать все эти шаги, если вы нашли все пакеты в репозиториях.
 
 Эта инструкция установит тулчейн в `/usr/local`. Вам понадобится около 9 ГБ свободного места и некоторое количество времени (зависит от вашего компьютера).
 

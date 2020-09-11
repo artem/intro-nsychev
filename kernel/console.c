@@ -166,13 +166,17 @@ consoleintr(int c)
     if(c != 0 && cons.e-cons.r < INPUT_BUF){
       c = (c == '\r') ? '\n' : c;
 
-      // echo back to the user.
-      consputc(c);
+      if (c != '\t') {
+        // don't push tab to user.
 
-      // store for consumption by consoleread().
-      cons.buf[cons.e++ % INPUT_BUF] = c;
+        // echo back to the user.
+        consputc(c);
 
-      if(c == '\n' || c == C('D') || cons.e == cons.r+INPUT_BUF){
+        // store for consumption by consoleread().
+        cons.buf[cons.e++ % INPUT_BUF] = c;
+      }
+
+      if(c == '\t' || c == '\n' || c == C('D') || cons.e == cons.r+INPUT_BUF){
         // wake up consoleread() if a whole line (or end-of-file)
         // has arrived.
         cons.w = cons.e;
